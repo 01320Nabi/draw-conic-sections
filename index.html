@@ -11,6 +11,11 @@
             }
             .output, .input {
                 float: left;
+                user-select: none;
+            }
+            span.texhtml {
+                font-family: "Nimbus Roman No9 L", "Times New Roman", Times, serif;
+                font-size: 116%;
             }
         </style>
     </head>
@@ -25,87 +30,88 @@
                         <select id="type">
                             <option value="dot">Dot</option>
                             <option value="line">Line</option>
-                            <option value="atob">A To B</option>
+                            <option value="segment">Segment</option>
                             <option value="circle">Circle</option>
                             <option value="parabola">Parabola</option>
                             <option value="ellipse">Ellipse</option>
                             <option value="hyperbola">Hyperbola</option>
                         </select>
                         <div class="block" id="dot" style="display: block;">
-                            <label for="dt-x">x: </label>
+                            <label for="dt-x"><span class="texhtml"><i>x</i></span>: </label>
                             <input type="number" id="dt-x" value="0"><br>
-                            <label for="dt-y">y: </label>
+                            <label for="dt-y"><span class="texhtml"><i>y</i></span>: </label>
                             <input type="number" id="dt-y" value="0"><br>
                             <button id="dt-add">Add</button>
                         </div>
                         <div class="block" id="line" style="display: none;">
-                            <label for="ln-x">x: </label>
+                            <label for="ln-x"><span class="texhtml"><i>x</i></span>: </label>
                             <input type="number" id="ln-x" value="0"><br>
-                            <label for="ln-y">y: </label>
+                            <label for="ln-y"><span class="texhtml"><i>y</i></span>: </label>
                             <input type="number" id="ln-y" value="0"><br>
-                            <label for="ln-m">m: </label>
+                            <label for="ln-v">Vertical: </label>
+                            <input type="checkbox" id="ln-v" value="false"><br>
+                            <label for="ln-m"><span class="texhtml"><i>m</i></span>: </label>
                             <input type="number" id="ln-m" value="1"><br>
                             <button id="ln-add">Add</button>
-                            <button id="ln-add-v">Add Vertical</button>
                         </div>
-                        <div class="block" id="atob" style="display: none;">
-                            <label for="ab-x1">x: </label>
-                            <input type="number" id="ab-x1" value="0"><br>
-                            <label for="ab-y1">y: </label>
-                            <input type="number" id="ab-y1" value="0"><br>
-                            <label for="ab-x2">x`: </label>
-                            <input type="number" id="ab-x2" value="1"><br>
-                            <label for="ab-y2">y`: </label>
-                            <input type="number" id="ab-y2" value="1"><br>
-                            <button id="ab-add">Add</button>
+                        <div class="block" id="segment" style="display: none;">
+                            <label for="sg-x1"><span class="texhtml"><i>x</i></span>: </label>
+                            <input type="number" id="sg-x1" value="0"><br>
+                            <label for="sg-y1"><span class="texhtml"><i>y</i></span>: </label>
+                            <input type="number" id="sg-y1" value="0"><br>
+                            <label for="sg-x2"><span class="texhtml"><i>x</i>&prime;</span>: </label>
+                            <input type="number" id="sg-x2" value="1"><br>
+                            <label for="sg-y2"><span class="texhtml"><i>x</i>&prime;</span>: </label>
+                            <input type="number" id="sg-y2" value="1"><br>
+                            <button id="sg-add">Add</button>
                         </div>
                         <div class="block" id="circle" style="display: none;">
-                            <label for="cc-x">x: </label>
+                            <label for="cc-x"><span class="texhtml"><i>x</i></span>: </label>
                             <input type="number" id="cc-x" value="0"><br>
-                            <label for="cc-y">y: </label>
+                            <label for="cc-y"><span class="texhtml"><i>y</i></span>: </label>
                             <input type="number" id="cc-y" value="0"><br>
-                            <label for="cc-r">r: </label>
+                            <label for="cc-r"><span class="texhtml"><i>r</i></span>: </label>
                             <input type="number" id="cc-r" value="1"><br>
                             <button id="cc-add">Add</button>
                         </div>
                         <div class="block" id="parabola" style="display: none;">
-                            <label for="pb-x">x: </label>
+                            <label for="pb-x"><span class="texhtml"><i>x</i></span>: </label>
                             <input type="number" id="pb-x" value="0"><br>
-                            <label for="pb-y">y: </label>
+                            <label for="pb-y"><span class="texhtml"><i>y</i></span>: </label>
                             <input type="number" id="pb-y" value="0"><br>
-                            <label for="pb-p">p: </label>
+                            <label for="pb-p"><span class="texhtml"><i>p</i></span>: </label>
                             <input type="number" id="pb-p" value="1"><br>
                             <label for="pb-d">Direction: </label>
                             <select name="pb-d" id="pb-d">
-                                <option value="x">X</option>
-                                <option value="y">Y</option>
+                                <option value="h">Horizontal</option>
+                                <option value="v">Vertical</option>
                             </select><br>
                             <button id="pb-add">Add</button>
                         </div>
                         <div class="block" id="ellipse" style="display: none;">
-                            <label for="ep-x">x: </label>
+                            <label for="ep-x"><span class="texhtml"><i>x</i></span>: </label>
                             <input type="number" id="ep-x" value="0"><br>
-                            <label for="ep-y">y: </label>
+                            <label for="ep-y"><span class="texhtml"><i>y</i></span>: </label>
                             <input type="number" id="ep-y" value="0"><br>
-                            <label for="ep-a">a: </label>
+                            <label for="ep-a"><span class="texhtml"><i>a</i></span>: </label>
                             <input type="number" id="ep-a" value="2"><br>
-                            <label for="ep-b">b: </label>
+                            <label for="ep-b"><span class="texhtml"><i>b</i></span>: </label>
                             <input type="number" id="ep-b" value="1"><br>
                             <button id="ep-add">Add</button>
                         </div>
                         <div class="block" id="hyperbola" style="display: none;">
-                            <label for="hb-x">x: </label>
+                            <label for="hb-x"><span class="texhtml"><i>x</i></span>: </label>
                             <input type="number" id="hb-x" value="0"><br>
-                            <label for="hb-y">y: </label>
+                            <label for="hb-y"><span class="texhtml"><i>y</i></span>: </label>
                             <input type="number" id="hb-y" value="0"><br>
-                            <label for="hb-a">a: </label>
+                            <label for="hb-a"><span class="texhtml"><i>a</i></span>: </label>
                             <input type="number" id="hb-a" value="1"><br>
-                            <label for="hb-b">b: </label>
+                            <label for="hb-b"><span class="texhtml"><i>b</i></span>: </label>
                             <input type="number" id="hb-b" value="1"><br>
                             <label for="hb-d">Direction: </label>
                             <select name="hb-d" id="hb-d">
-                                <option value="x">X</option>
-                                <option value="y">Y</option>
+                                <option value="h">Horizontal</option>
+                                <option value="v">Vertical</option>
                             </select><br>
                             <button id="hb-add">Add</button>
                         </div>
@@ -154,13 +160,8 @@
         }
         draw()
 
-        window.onwheel = function(ev) {
-            zoom = Math.max(zoom - ev.deltaY * 0.01, 1)
-            draw()
-        }
-
         document.getElementById("type").onchange = function(ev) {
-            const blocks = ["dot", "line", "atob", "circle", "parabola", "ellipse", "hyperbola"]
+            const blocks = ["dot", "line", "segment", "circle", "parabola", "ellipse", "hyperbola"]
             blocks.forEach(block => document.getElementById(block).style.display = "none")
             document.getElementById(this.value).style.display = "block"
         }
@@ -171,25 +172,22 @@
             drawings.push(new Dot(+x.value, +y.value))
             draw()
         }
+        document.getElementById("ln-v").onchange = function(ev) {
+            document.getElementById("ln-m").disabled = document.getElementById("ln-v").checked
+        }
         document.getElementById("ln-add").onclick = function(ev) {
             let x = document.getElementById("ln-x")
             let y = document.getElementById("ln-y")
             let m = document.getElementById("ln-m")
-            drawings.push(new Line(+x.value, +y.value, +m.value))
+            drawings.push(new Line(+x.value, +y.value, document.getElementById("ln-v").checked?Infinity:+m.value))
             draw()
         }
-        document.getElementById("ln-add-v").onclick = function(ev) {
-            let x = document.getElementById("ln-x")
-            let y = document.getElementById("ln-y")
-            drawings.push(new Line(+x.value, +y.value, Infinity))
-            draw()
-        }
-        document.getElementById("ab-add").onclick = function(ev) {
-            let x1 = document.getElementById("ab-x1")
-            let y1 = document.getElementById("ab-y1")
-            let x2 = document.getElementById("ab-x2")
-            let y2 = document.getElementById("ab-y2")
-            drawings.push(new AToB(+x1.value, +y1.value, +x2.value, +y2.value))
+        document.getElementById("sg-add").onclick = function(ev) {
+            let x1 = document.getElementById("sg-x1")
+            let y1 = document.getElementById("sg-y1")
+            let x2 = document.getElementById("sg-x2")
+            let y2 = document.getElementById("sg-y2")
+            drawings.push(new Segment(+x1.value, +y1.value, +x2.value, +y2.value))
             draw()
         }
         document.getElementById("cc-add").onclick = function(ev) {

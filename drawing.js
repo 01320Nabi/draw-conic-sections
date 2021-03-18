@@ -2,6 +2,7 @@ class Dot {
     constructor(x, y) {
         this.x = x
         this.y = y
+        this.type = "Dot"
     }
     draw(ctx) {
         ctx.beginPath()
@@ -15,27 +16,29 @@ class Line extends Dot {
     constructor(x, y, m) {
         super(x, y)
         this.m = m
+        this.type = "Line"
     }
     draw(ctx) {
         ctx.beginPath()
         if(this.m === Infinity) {
-            ctx.moveTo(this.x, this.y - 10000)
-            ctx.lineTo(this.x, this.y + 10000)
+            ctx.moveTo(this.x, this.y - 1000)
+            ctx.lineTo(this.x, this.y + 1000)
         }
         else {
-            ctx.moveTo(this.x - 10000, this.y - 10000 * this.m)
-            ctx.lineTo(this.x + 10000, this.y + 10000 * this.m)
+            ctx.moveTo(this.x - 1000, this.y - 1000 * this.m)
+            ctx.lineTo(this.x + 1000, this.y + 1000 * this.m)
         }
         ctx.stroke()
         ctx.closePath()
     }
 }
 
-class AToB extends Dot {
+class Segment extends Dot {
     constructor(x1, y1, x2, y2) {
         super(x1, y1)
         this.a = x2
         this.b = y2
+        this.type = "Segment"
     }
     draw(ctx) {
         ctx.beginPath()
@@ -50,6 +53,7 @@ class Circle extends Dot {
     constructor(x, y, r) {
         super(x, y)
         this.r = r
+        this.type = "Circle"
     }
     draw(ctx) {
         ctx.beginPath()
@@ -64,18 +68,19 @@ class Parabola extends Dot {
         super(x, y)
         this.p = p
         this.d = d
+        this.type = "Parabola"
     }
     draw(ctx) {
         ctx.beginPath()
-        if(this.d === 'x') {
-            ctx.moveTo(this.x + Math.pow(-10000, 2) / (4 * this.p), this.y + -10000)
-            for(let i=-9999; i<10000; i+=0.1) {
+        if(this.d === 'h') {
+            ctx.moveTo(this.x + Math.pow(-1000, 2) / (4 * this.p), this.y + -1000)
+            for(let i=-999; i<1000; i+=0.1) {
                 ctx.lineTo(this.x + Math.pow(i, 2) / (4 * this.p), this.y + i)
             }
         }
-        else if(this.d === 'y') {
-            ctx.moveTo(this.x + -10000, this.y + Math.pow(-10000, 2) / (4 * this.p))
-            for(let i=-9999; i<10000; i+=0.1) {
+        else if(this.d === 'v') {
+            ctx.moveTo(this.x + -1000, this.y + Math.pow(-1000, 2) / (4 * this.p))
+            for(let i=-999; i<1000; i+=0.1) {
                 ctx.lineTo(this.x + i, this.y + Math.pow(i, 2) / (4 * this.p))
             }
         }
@@ -89,6 +94,7 @@ class Ellipse extends Dot {
         super(x, y)
         this.a = a
         this.b = b
+        this.type = "Ellipse"
     }
     draw(ctx) {
         ctx.beginPath()
@@ -104,26 +110,27 @@ class Hyperbola extends Dot {
         this.a = a
         this.b = b
         this.d = d
+        this.type = "Hyperbola"
     }
     draw(ctx) {
         ctx.beginPath()
-        if(this.d === 'x') {
-            ctx.moveTo(this.x + Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-10000/this.b, 2))), this.y + -10000)
-            for(let i=-9999; i<10000; i+=0.1) {
+        if(this.d === 'h') {
+            ctx.moveTo(this.x + Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-1000/this.b, 2))), this.y + -1000)
+            for(let i=-999; i<1000; i+=0.1) {
                 ctx.lineTo(this.x + Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(i/this.b, 2))), this.y + i)
             }
-            ctx.moveTo(this.x - Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-10000/this.b, 2))), this.y + -10000)
-            for(let i=-9999; i<10000; i+=0.1) {
+            ctx.moveTo(this.x - Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-1000/this.b, 2))), this.y + -1000)
+            for(let i=-999; i<1000; i+=0.1) {
                 ctx.lineTo(this.x - Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(i/this.b, 2))), this.y + i)
             }
         }
-        else if(this.d === 'y') {
-            ctx.moveTo(this.x + -10000, this.y + Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-10000/this.b, 2))))
-            for(let i=-9999; i<10000; i+=0.1) {
+        else if(this.d === 'v') {
+            ctx.moveTo(this.x + -1000, this.y + Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-1000/this.b, 2))))
+            for(let i=-999; i<1000; i+=0.1) {
                 ctx.lineTo(this.x + i, this.y + Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(i/this.b, 2))))
             }
-            ctx.moveTo(this.x + -10000, this.y - Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-10000/this.b, 2))))
-            for(let i=-9999; i<10000; i+=0.1) {
+            ctx.moveTo(this.x + -1000, this.y - Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(-1000/this.b, 2))))
+            for(let i=-999; i<1000; i+=0.1) {
                 ctx.lineTo(this.x + i, this.y - Math.sqrt(Math.pow(this.a, 2) * (1+Math.pow(i/this.b, 2))))
             }
         }
