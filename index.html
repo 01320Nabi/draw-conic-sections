@@ -20,10 +20,10 @@
         </style>
     </head>
     <body>
-        <div class="center">
+        <div>
             <div>
                 <div class="output">
-                    <canvas id="canvas" width="800" height="600"></canvas>
+                    <canvas id="canvas" width="1000" height="800"></canvas>
                 </div>
                 <div class="input">
                     <div>
@@ -132,10 +132,10 @@
         let drawings = []
         let zoom = 100
         function draw() {
-            ctx.clearRect(0, 0, 800, 600)
+            ctx.clearRect(0, 0, 1000, 800)
             ctx.fillStyle = ctx.strokeStyle = "#000000"
             ctx.save()
-            ctx.translate(400, 300)
+            ctx.translate(500, 400)
             ctx.scale(zoom/4, -zoom/4)
             ctx.lineWidth = 1 / zoom
             ctx.beginPath()
@@ -152,7 +152,6 @@
                 list.removeChild(list.lastChild)
             }
             drawings.forEach((drawing, index) => {
-                console.log(typeof drawing)
                 let li = document.createElement("li")
                 li.innerHTML = "<a href=\"javascript:drawings.splice(" + index + ", 1);draw()\">" + JSON.stringify(drawing) + "</a>"
                 list.appendChild(li)
